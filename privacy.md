@@ -1,8 +1,3 @@
----
-title: Privacy Policy – Little Nudges
-permalink: /privacy
----
-
 # Privacy Policy
 
 **Little Nudges – Animated Reminders** (Chrome extension)

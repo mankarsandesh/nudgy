@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nudgy</title>
+  <link rel="stylesheet" href="reminder.css" />
+</head>
+<body class="t-bell">
+  <div class="bg" aria-hidden="true"></div>
+  <span id="previewTag" class="preview-tag" hidden>Preview</span>
+  <div id="stage" class="stage" aria-hidden="true"></div>
+  <main class="card">
+    <div id="kicker" class="kicker"></div>
+    <h1 id="text"></h1>
+    <p id="desc" class="desc" hidden></p>
+    <p id="sub" class="sub"></p>
+    <div class="actions">
+      <button id="done" class="btn primary">Done</button>
+      <button id="snooze" class="btn">Snooze</button>
+    </div>
+    <button id="skip" class="link">Skip this time</button>
+  </main>
+  <script src="lib/core.js"></script>
+  <script src="animations.js"></script>
+  <script src="reminder.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+:root {
+  --bg1: #E0E7FF; --bg2: #C7D2FE; --ink: #1E1B4B; --muted: #4C4A7A; --accent: #4338CA; --accent-ink: #fff;
+}
+.t-water   { --bg1: #E0F2FE; --bg2: #BAE6FD; --ink: #0C4A6E; --muted: #2B6A8C; --accent: #0284C7; }
+.t-stretch { --bg1: #FFF1E6; --bg2: #FED7AA; --ink: #7C2D12; --muted: #9A4A22; --accent: #EA580C; }
+.t-eyes    { --bg1: #E7F8EE; --bg2: #BBF7D0; --ink: #14532D; --muted: #2F6B45; --accent: #15803D; }
+.t-breathe { --bg1: #F3EEFF; --bg2: #DDD6FE; --ink: #3B0764; --muted: #5B3A86; --accent: #7C3AED; }
+.t-walk    { --bg1: #F4FBE5; --bg2: #D9F99D; --ink: #365314; --muted: #4D6B24; --accent: #4D7C0F; }
+.t-coffee  { --bg1: #FBF3EA; --bg2: #EAD7C0; --ink: #431407; --muted: #6B3A1F; --accent: #92400E; }
+.t-bell    { --bg1: #EEF2FF; --bg2: #C7D2FE; --ink: #1E1B4B; --muted: #4C4A7A; --accent: #4338CA; }
+
+* { box-sizing: border-box; margin: 0; }
+html, body { height: 100%; }
+body {
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg1);
+  display: flex; flex-direction: column; align-items: center;
+  overflow: hidden; position: relative;
+}
+.bg { position: fixed; inset: 0; z-index: -1;
+  background: radial-gradient(120% 80% at 50% 0%, var(--bg1) 0%, var(--bg2) 100%); }
+
+.preview-tag { position: absolute; top: 12px; left: 12px; font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--accent); background: rgba(255,255,255,.7); padding: 3px 9px; border-radius: 999px; }
+
+.stage { width: 100%; height: 300px; display: grid; place-items: center; position: relative; flex: none; }
+.stage svg { width: 240px; height: 260px; overflow: visible; }
+
+.card { width: calc(100% - 32px); max-width: 400px; text-align: center; padding: 4px 8px 20px;
+  animation: cardIn .5s cubic-bezier(.2,.8,.2,1) both .15s; }
+@keyframes cardIn { from { opacity: 0; transform: translateY(14px); } }
+.kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font-size: 26px; line-height: 1.15; letter-spacing: -.015em; margin: 6px 0 6px; overflow-wrap: anywhere; }
+.desc { font-size: 15px; margin: 0 auto 8px; max-width: 360px; max-height: 88px; overflow-y: auto;
+  white-space: pre-wrap; overflow-wrap: anywhere; }
+.sub { color: var(--muted); font-size: 14px; min-height: 20px; }
+/* Make room for the description so the buttons stay on screen. */
+.has-desc .stage { height: 250px; }
+.has-desc .stage svg { width: 206px; height: 223px; }
+.actions { display: flex; gap: 10px; justify-content: center; margin-top: 18px; }
+.btn { font: inherit; font-weight: 650; cursor: pointer; border-radius: 999px; padding: 11px 22px; min-width: 128px;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 35%, transparent); background: rgba(255,255,255,.65); color: var(--ink);
+  transition: transform .12s ease, background .12s ease; }
+.btn:hover { transform: translateY(-1px); background: #fff; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 35%, transparent); }
+.btn.primary:hover { background: var(--accent); filter: brightness(1.07); }
+.btn.pulse { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.06); } }
+.link { margin-top: 12px; font: inherit; font-size: 13px; color: var(--muted); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ================= WATER ================= */
+.water .fill { transform: translateY(205px); animation: rise 3.2s cubic-bezier(.3,.7,.3,1) forwards .3s; }
+@keyframes rise { to { transform: translateY(95px); } }
+.water .wave { animation: wave 2.4s linear infinite; }
+.water .wave.w2 { animation-duration: 3.6s; animation-direction: reverse; }
+@keyframes wave { to { transform: translateX(100px); } }
+.water .bubble { opacity: 0; animation: bubble 2.8s ease-in infinite; }
+@keyframes bubble { 0% { opacity: 0; transform: translateY(0); } 15% { opacity: .9; } 100% { opacity: 0; transform: translateY(-120px); } }
+.water .drop { animation: drop 1.8s cubic-bezier(.5,0,.9,.5) infinite; }
+@keyframes drop {
+  0% { transform: translateY(-40px) scale(.6); opacity: 0; }
+  15% { opacity: 1; transform: translateY(-20px) scale(1); }
+  55% { transform: translateY(66px) scale(1, 1.15); opacity: 1; }
+  58%, 100% { transform: translateY(66px); opacity: 0; }
+}
+.water .ripple { transform-origin: 120px 104px; opacity: 0; animation: ripple 1.8s ease-out infinite; }
+@keyframes ripple { 0%, 55% { opacity: 0; transform: scale(.2); } 60% { opacity: .9; } 100% { opacity: 0; transform: scale(1.6); } }
+.water .splash { opacity: 0; animation: splash 1.8s ease-out infinite; }
+@keyframes splash { 0%, 56% { opacity: 0; transform: translate(0,0); } 62% { opacity: 1; } 85%, 100% { opacity: 0; transform: translate(var(--dx), -26px); } }
+
+/* ================= STRETCH ================= */
+.stretch .arm-l { transform-origin: 110px 96px; animation: armL 5s ease-in-out infinite; }
+.stretch .arm-r { transform-origin: 130px 96px; animation: armR 5s ease-in-out infinite; }
+@keyframes armL { 0%, 8% { transform: rotate(-160deg); } 25%, 85% { transform: rotate(-26deg); } 100% { transform: rotate(-160deg); } }
+@keyframes armR { 0%, 8% { transform: rotate(160deg); } 25%, 85% { transform: rotate(26deg); } 100% { transform: rotate(160deg); } }
+.stretch .upper { transform-origin: 120px 168px; animation: lean 5s ease-in-out infinite; }
+@keyframes lean { 0%, 28% { transform: rotate(0); } 42% { transform: rotate(-16deg); } 56% { transform: rotate(-16deg); }
+  70% { transform: rotate(16deg); } 80% { transform: rotate(16deg); } 92%, 100% { transform: rotate(0); } }
+.stretch .spark { opacity: 0; animation: spark 5s ease-out infinite; }
+@keyframes spark { 0%, 22% { opacity: 0; transform: scale(.4); } 28% { opacity: 1; transform: scale(1); } 40%, 100% { opacity: 0; transform: scale(1.3); } }
+
+/* ================= EYES ================= */
+.eyes .lid { transform-origin: 120px 70px; transform: scaleY(0); animation: blink 4s ease-in-out infinite; }
+@keyframes blink { 0%, 88% { transform: scaleY(0); } 92% { transform: scaleY(1); } 96%, 100% { transform: scaleY(0); } }
+.eyes .iris { animation: look 6s ease-in-out infinite; }
+@keyframes look { 0%, 15% { transform: translate(0,0); } 30%, 45% { transform: translate(-30px, -6px); } 60%, 75% { transform: translate(30px, -6px); } 90%, 100% { transform: translate(0,0); } }
+.eyes .ring-bg { stroke: rgba(21,128,61,.15); }
+.eyes .ring { stroke: var(--accent); transition: stroke-dashoffset 1s linear; transform: rotate(-90deg); transform-origin: 120px 205px; }
+.eyes .count { font: 700 24px system-ui, sans-serif; fill: var(--ink); }
+.eyes .count-label { font: 600 9px system-ui, sans-serif; fill: var(--muted); letter-spacing: .08em; }
+
+/* ================= BREATHE ================= */
+.breathe .orb { transform-origin: 120px 120px; animation: breathe 8s ease-in-out infinite; }
+.breathe .halo { transform-origin: 120px 120px; animation: breathe 8s ease-in-out infinite; animation-delay: .25s; }
+.breathe .halo2 { transform-origin: 120px 120px; animation: breathe 8s ease-in-out infinite; animation-delay: .5s; }
+@keyframes breathe { 0%, 100% { transform: scale(.55); } 50% { transform: scale(1); } }
+.breathe .label { font: 650 15px system-ui, sans-serif; fill: #fff; letter-spacing: .02em; }
+.breathe .dot { transform-origin: 120px 120px; animation: orbit 8s linear infinite; }
+@keyframes orbit { to { transform: rotate(360deg); } }
+
+/* ================= WALK ================= */
+.walk .print { transform-box: fill-box; transform-origin: center; opacity: 0; animation: step 4s ease-in-out infinite; }
+@keyframes step { 0% { opacity: 0; transform: scale(.7); } 6% { opacity: 1; transform: scale(1); } 45% { opacity: 1; } 70%, 100% { opacity: 0; } }
+
+/* ================= COFFEE ================= */
+.coffee .steam { stroke-dasharray: 60 120; animation: steam 3s ease-in-out infinite; opacity: 0; }
+.coffee .steam.s2 { animation-delay: .9s; }
+.coffee .steam.s3 { animation-delay: 1.8s; }
+@keyframes steam { 0% { stroke-dashoffset: 60; opacity: 0; transform: translateY(10px); } 30% { opacity: .9; } 100% { stroke-dashoffset: -100; opacity: 0; transform: translateY(-24px); } }
+.coffee .cup { transform-origin: 120px 200px; animation: wobble 3s ease-in-out infinite; }
+@keyframes wobble { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-1.5deg); } }
+.coffee .heart { transform-origin: 112px 132px; animation: heart 3s ease-in-out infinite; }
+@keyframes heart { 50% { transform: scale(1.08); } }
+
+/* ================= BELL ================= */
+.bell .bell-body { transform-origin: 120px 52px; animation: ring 2.2s ease-in-out infinite; }
+.bell .clapper { transform-origin: 120px 60px; animation: clap 2.2s ease-in-out infinite; }
+@keyframes ring { 0%, 50%, 100% { transform: rotate(0); } 8% { transform: rotate(18deg); } 16% { transform: rotate(-16deg); } 24% { transform: rotate(12deg); } 32% { transform: rotate(-8deg); } 40% { transform: rotate(4deg); } }
+@keyframes clap { 0%, 50%, 100% { transform: rotate(0); } 10% { transform: rotate(-22deg); } 18% { transform: rotate(20deg); } 26% { transform: rotate(-14deg); } 34% { transform: rotate(8deg); } }
+.bell .wave { opacity: 0; animation: bwave 2.2s ease-out infinite; }
+.bell .wave.d2 { animation-delay: .2s; }
+@keyframes bwave { 0%, 4% { opacity: 0; transform: scale(.8); } 12% { opacity: 1; } 45%, 100% { opacity: 0; transform: scale(1.15); } }
+.bell .wave.l { transform-origin: 80px 110px; }
+.bell .wave.r { transform-origin: 160px 110px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stage * { animation-duration: 0s !important; animation-iteration-count: 1 !important; }
+}

@@ -307,7 +307,7 @@
       h('div', { class: 'field' }, h('div', { class: 'lbl' }, 'Snooze length'),
         h('select', { onchange: (e) => save({ snooze: Number(e.target.value) }) },
           [5, 10, 15, 30].map((m) => h('option', { value: m, selected: st.snooze === m }, m + ' minutes')))),
-      h('p', { class: 'hint', style: 'margin-top:14px' }, 'Nudgy is free, with unlimited reminders. Your reminders are stored only in this browser.')
+      h('p', { class: 'hint', style: 'margin-top:14px' }, 'Your reminders are stored only in this browser.')
     );
   }
 
